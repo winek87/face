@@ -1,0 +1,17 @@
+services:
+  eface:
+    container_name: eface
+    restart: unless-stopped
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - type: tmpfs # Optional: 1GB of memory
+        target: /tmp/cache
+        tmpfs:
+          size: 1GB
+    environment:
+      API_KEY: 'NZ9ciQuH0djnyyTcsDhNL7so6SVrR01znNnv0iXLrSk='
+      GUNICORN_WORKERS: '2'
+      FACE_MODEL: '1'
+    image: eface
+    ports:
+    - 5000:5000
